@@ -1,0 +1,38 @@
+.box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  flex-direction: column;
+
+  width: 356px;
+  margin: 0 auto;
+  padding: 14px;
+
+  font-size: 14px;
+
+  background-color: rgba(245, 244, 250, 1);
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 15%);
+}
+
+.contactList {
+  margin-bottom: 12px;
+  background-color: #fff;
+}
+
+.title_comp {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.list{
+    margin-left: 16px;
+}
+
+.item{
+    margin-right: auto;
+   font-size: 14px; 
+   font-weight: 500;
+}

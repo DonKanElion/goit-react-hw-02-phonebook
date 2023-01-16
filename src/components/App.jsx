@@ -13,14 +13,13 @@ export class App extends Component {
       {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
-    filter: '',
+    // filter: '',
     name: '',
-    number: ''
+    // number: ''
   }
 
-
-
   render () {
+    const { name, contacts } = this.state;
 
     return (
       <div
@@ -32,22 +31,24 @@ export class App extends Component {
           color: '#010101',
         }}
 
-        className="container"
+        className="section"
       >
-         <h3>React 🛠 homework template 🙀</h3>
+         <h2>React 🛠 homework template 🙀</h2>
 
-      {/* // <div>
-      // <h1>Phonebook</h1>
-      // <ContactForm ... /> */}
+      {/* <div> */}
+
+      <h1>Phonebook</h1>
+      {/* // <ContactForm ... /> */}
 
       <ContactForm> </ContactForm>
-      <ContactList></ContactList>
+      <ContactList contacts={contacts}></ContactList>
       <Filter></Filter>
-{/* 
-      // <h2>Contacts</h2>
-      // <Filter ... />
-      // <ContactList ... />
-      // </div> */}
+
+          {/* 
+          // <h2>Contacts</h2>
+          // <Filter ... />
+          // <ContactList ... />
+          // </div> */}
 
       </div>
     );
