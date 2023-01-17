@@ -16,18 +16,22 @@
 }
 
 .contactForm {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   background-color: rgba(245, 244, 250, 1);
 }
 
 .title_comp {
-  font-size: 24px;
+  display: block;
+  text-align: left;
+  font-size: 18px;
   font-weight: 400;
   margin-bottom: 5px;
   /* color: #3a3938; */
 }
 
 .input {
+  display: block;
+  width: 180px;
   font-size: 14px;
   padding: 5px;
   margin-bottom: 12px;
