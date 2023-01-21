@@ -1,9 +1,14 @@
+// import classNames from "classnames";
+import s from '../ContactForm/ContactForm.module.css';
 
-
-const Filter = () => {
+const Filter = ({ stateName, onChange }) => {
 return (
     <>
-    <h3>Hello, Filter! </h3>
+    <label className={s.title_comp}>
+    Find contacts by name 
+    <input type="text" name="filter" value={stateName} onChange={onChange} className={s.input}/>
+        
+    </label>
     </>
 )
 }

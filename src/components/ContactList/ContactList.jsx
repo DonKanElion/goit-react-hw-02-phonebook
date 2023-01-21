@@ -7,6 +7,7 @@ const ContactList = ({ contacts }) => {
   return (
     <div className={classNames(s.box, s.contactList)}>
       <h3 className={s.title_comp}>Contacts</h3>
+
       <ul className={s.list}>
         <ContactListItem contacts={contacts}></ContactListItem>
       </ul>
