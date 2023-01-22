@@ -1,16 +1,21 @@
-// import classNames from "classnames";
-import s from '../ContactForm/ContactForm.module.css';
+import classNames from 'classnames';
+import s from '../ContactList/ContactList.module.css';
 
 const Filter = ({ stateName, onChange }) => {
-return (
-    <>
-    <label className={s.title_comp}>
-    Find contacts by name 
-    <input type="text" name="filter" value={stateName} onChange={onChange} className={s.input}/>
-        
-    </label>
-    </>
-)
-}
+  return (
+    <div className={classNames(s.box, s.contactList)}>
+      <label className={s.text}>
+        Find contacts by name
+        <input
+          type="text"
+          name="filter"
+          value={stateName}
+          onChange={onChange}
+          className={s.input}
+        />
+      </label>
+    </div>
+  );
+};
 
 export default Filter;

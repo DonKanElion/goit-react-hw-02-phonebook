@@ -3,9 +3,9 @@ import ContactListItem from './ContactListItem';
 import classNames from 'classnames';
 import s from './ContactList.module.css';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, filter }) => {
   return (
-    <div className={classNames(s.box, s.contactList)}>
+    <div className={classNames(s.box, s.contactForm)}>
       <h3 className={s.title_comp}>Contacts</h3>
 
       <ul className={s.list}>

@@ -82,3 +82,11 @@ li {
   padding-top: 60px;
   padding-bottom: 60px;
 }
+
+.hero_title{
+  margin-bottom: 10px;
+}
+
+.title{
+  margin-bottom: 0;
+}

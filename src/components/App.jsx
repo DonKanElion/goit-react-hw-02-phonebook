@@ -13,10 +13,10 @@ import Filter from './Filter';
 export class App extends Component {
   state = {
     contacts: [
-      {id: 'id-1', name: 'Rosie Simpson', number: '443-89-12'},
-      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+      { id: 'id-1', name: 'Rosie Simpson', number: '443-89-12' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
     name: '',
@@ -48,6 +48,15 @@ export class App extends Component {
     }));
   };
 
+  findContact = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLocaleLowerCase().includes(normalizedFilter)
+    );
+  };
+
   reset = () => {
     // this.setState({ ...INITIAL_STATE });
     this.setState({
@@ -56,12 +65,8 @@ export class App extends Component {
     });
   };
 
-  findContact = ({ findName, contacts }) => {
-    console.log('Filter', findName);
-  }
-
   render() {
-    const { contacts } = this.state;
+    // const { contacts } = this.state;
 
     return (
       <div
@@ -75,32 +80,23 @@ export class App extends Component {
       >
         <h2>React 🛠 homework template 🙀</h2>
 
-        {/* <div> */}
-
-        <h1>Phonebook</h1>
-        {/* // <ContactForm ... /> */}
+        <h1 className="hero_title">Phonebook</h1>
 
         <ContactForm
           onChange={this.handleChange}
           onSubmit={this.hundleSubmit.bind(this)}
-        >
-          {' '}
-        </ContactForm>
+        ></ContactForm>
+        {/* <h2 className='title'>Contacts</h2> */}
 
-        <h2>Contacts</h2>
+        <Filter
+          stateName={this.state.filter}
+          onChange={this.handleChange}
+        ></Filter>
 
-        <Filter stateName={this.state.filter} onChange={this.handleChange}></Filter>
-
-        <ContactList contacts={contacts}>
-          {' '}
+        <ContactList contacts={this.findContact()}>
           stateName={this.state.name}
         </ContactList>
-
-        {/* 
-          // <h2>Contacts</h2>
-          // <Filter ... />
-          // <ContactList ... />
-          // </div> */}
+        
       </div>
     );
   }

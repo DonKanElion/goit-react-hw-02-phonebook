@@ -36,3 +36,17 @@
    font-size: 14px; 
    font-weight: 500;
 }
+
+.input {
+  display: block;
+  width: 160px;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.text{
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+}
