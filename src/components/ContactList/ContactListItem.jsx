@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 // import classNames from "classnames";
 import s from './ContactList.module.css';
 
@@ -10,5 +11,9 @@ const ContactListItem = ({ contacts }) => {
     );
   });
 };
+
+ContactListItem.propTypes = { 
+  contacts: PropTypes.array.isRequired,
+}
 
 export default ContactListItem;

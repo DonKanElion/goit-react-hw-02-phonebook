@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import s from './ContactForm.module.css';
 
@@ -48,5 +49,11 @@ const ContactForm = ({ onSubmit, onChange, stateName }) => {
     </div>
   );
 };
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  stateName: PropTypes.string,
+}
 
 export default ContactForm;

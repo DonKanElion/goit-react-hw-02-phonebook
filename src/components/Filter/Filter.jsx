@@ -1,4 +1,6 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
 import s from '../ContactList/ContactList.module.css';
 
 const Filter = ({ stateName, onChange }) => {
@@ -17,5 +19,10 @@ const Filter = ({ stateName, onChange }) => {
     </div>
   );
 };
+
+Filter.propTypes = {
+  stateName: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+}
 
 export default Filter;

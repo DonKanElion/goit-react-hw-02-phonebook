@@ -1,9 +1,10 @@
-import ContactListItem from './ContactListItem';
-
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
+import ContactListItem from './ContactListItem';
 import s from './ContactList.module.css';
 
-const ContactList = ({ contacts, filter }) => {
+const ContactList = ({ contacts }) => {
   return (
     <div className={classNames(s.box, s.contactForm)}>
       <h3 className={s.title_comp}>Contacts</h3>
@@ -14,5 +15,9 @@ const ContactList = ({ contacts, filter }) => {
     </div>
   );
 };
+
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+}
 
 export default ContactList;
