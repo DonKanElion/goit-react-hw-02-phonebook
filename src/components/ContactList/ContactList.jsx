@@ -10,7 +10,15 @@ const ContactList = ({ contacts }) => {
       <h3 className={s.title_comp}>Contacts</h3>
 
       <ul className={s.list}>
-        <ContactListItem contacts={contacts}></ContactListItem>
+        {contacts.map(({ id, name, number }) => {
+          return (
+            <ContactListItem
+              key={id}
+              name={name}
+              number={number}
+            ></ContactListItem>
+          );
+        })}
       </ul>
     </div>
   );
@@ -18,6 +26,6 @@ const ContactList = ({ contacts }) => {
 
 ContactList.propTypes = {
   contacts: PropTypes.array.isRequired,
-}
+};
 
-export default ContactList;
+export default ContactList

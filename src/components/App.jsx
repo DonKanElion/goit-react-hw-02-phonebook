@@ -1,7 +1,8 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 
-import ContactForm from './ContactForm';
+// import ContactForm from './ContactForm';
+import { ContactForm } from "components/ContactForm/ContactForm";
 import ContactList from './ContactList';
 import Filter from './Filter';
 
@@ -19,22 +20,7 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
-
-  handleChange = evt => {
-    const { name, value } = evt.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  hundleSubmit(evt) {
-    evt.preventDefault();
-    this.addContact(this.state);
-    this.reset();
-  }
 
   addContact = ({ name, number }) => {
     const newContact = {
@@ -57,13 +43,13 @@ export class App extends Component {
     );
   };
 
-  reset = () => {
-    // this.setState({ ...INITIAL_STATE });
+  handleChange = evt => {
+    const { name, value } = evt.target;
     this.setState({
-      name: '',
-      number: '',
+      [name]: value,
     });
   };
+
 
   render() {
     // const { contacts } = this.state;
@@ -82,10 +68,9 @@ export class App extends Component {
 
         <h1 className="hero_title">Phonebook</h1>
 
-        <ContactForm
-          onChange={this.handleChange}
-          onSubmit={this.hundleSubmit.bind(this)}
+        <ContactForm addContact={this.addContact}
         ></ContactForm>
+
         {/* <h2 className='title'>Contacts</h2> */}
 
         <Filter
@@ -94,7 +79,7 @@ export class App extends Component {
         ></Filter>
 
         <ContactList contacts={this.findContact()}>
-          stateName={this.state.name}
+          {/* stateName={this.state.name} */}
         </ContactList>
         
       </div>

@@ -1,7 +1,6 @@
 .box {
   display: flex;
   align-items: flex-start;
-  justify-content: start;
   flex-direction: column;
 
   width: 356px;
