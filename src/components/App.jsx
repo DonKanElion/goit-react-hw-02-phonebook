@@ -17,6 +17,13 @@ export class App extends Component {
     filter: '',
   };
 
+  handleChange = evt => {
+    const { name, value } = evt.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
   addContact = (name, number) => {
     const { contacts } = this.state;
 
@@ -24,19 +31,38 @@ export class App extends Component {
       contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
     );
 
-    if (checkContact) {
-      return alert('This contact is in the list');
+    if (!checkContact) {
+      const newContact = {
+        id: 'id-' + nanoid(2),
+        name,
+        number,
+      };
+
+      return this.setState(prevState => ({
+        contacts: [newContact, ...prevState.contacts],
+      }));
     }
-    const newContact = {
-      id: 'id-' + nanoid(2),
-      name,
-      number,
-    };
+
+    alert(`${name} is already in contact`);
+
+    //  if(name === '' || "" || undefined){
+    //   return  alert(`Fill in the field`);
+    //  }
+  };
+
+  handleClick = evt => {
+    const { id } = evt.target;
 
     this.setState(prevState => ({
-      contacts: [newContact, ...prevState.contacts],
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
+
+  // deleteContact = id => {
+  //   // this.setState(prevState => ({
+  //   //   contacts: []
+  //   // }))
+  // };
 
   findContact = () => {
     const { contacts, filter } = this.state;
@@ -47,14 +73,9 @@ export class App extends Component {
     );
   };
 
-  handleChange = evt => {
-    const { name, value } = evt.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
   render() {
+    const { contacts } = this.state;
+
     return (
       <div
         style={{
@@ -73,14 +94,20 @@ export class App extends Component {
 
         {/* <h2 className='title'>Contacts</h2> */}
 
-        <Filter
-          stateName={this.state.filter}
-          onChange={this.handleChange}
-        ></Filter>
-
-        <ContactList contacts={this.findContact()}>
-          {/* stateName={this.state.name} */}
-        </ContactList>
+        {contacts.length !== 0 ? (
+          <>
+            <Filter
+              stateName={this.state.filter}
+              onChange={this.handleChange}
+            ></Filter>
+            <ContactList
+              contacts={this.findContact()}
+              onClick={this.handleClick}
+            ></ContactList>
+          </>
+        ) : (
+          <p>Looks like you don`t have any contacts. Please add new contact.</p>
+        )}
       </div>
     );
   }

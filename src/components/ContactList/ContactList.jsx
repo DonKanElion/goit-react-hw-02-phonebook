@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ContactListItem from './ContactListItem';
 import s from './ContactList.module.css';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, onClick }) => {
   return (
     <div className={classNames(s.box, s.contactForm)}>
       <h3 className={s.title_comp}>Contacts</h3>
@@ -14,8 +14,10 @@ const ContactList = ({ contacts }) => {
           return (
             <ContactListItem
               key={id}
+              id={id}
               name={name}
               number={number}
+              onClick={onClick}
             ></ContactListItem>
           );
         })}
@@ -26,6 +28,7 @@ const ContactList = ({ contacts }) => {
 
 ContactList.propTypes = {
   contacts: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ContactList
