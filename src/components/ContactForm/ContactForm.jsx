@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 // import { nanoid } from 'nanoid';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import s from './ContactForm.module.css';
 
 export class ContactForm extends Component {
+  static propTypes = {
+    addContact: PropTypes.func.isRequired,
+  };
+
   state = {
     name: '',
     number: '',
@@ -18,21 +22,17 @@ export class ContactForm extends Component {
     });
   };
 
-  handleSubmit(evt) {
+  handleSubmit = evt => {
     evt.preventDefault();
 
     const { addContact } = this.props;
-    const { name, number  } = this.state;
-
-    // this.props.addContact(this.state.name, this.state.number);
-    addContact(name, number)
+    const { name, number } = this.state;
+    addContact(name, number);
 
     this.reset();
-  }
-
+  };
 
   reset = () => {
-    // this.setState({ ...INITIAL_STATE });
     this.setState({
       name: '',
       number: '',
@@ -40,12 +40,7 @@ export class ContactForm extends Component {
   };
 
   render() {
-
-const { name, number  } = this.state;
-
-// console.log(this.props.addContact)
-
-
+    const { name, number } = this.state;
 
     return (
       <div className={classNames(s.box, s.contactForm)}>
@@ -93,11 +88,5 @@ const { name, number  } = this.state;
     );
   }
 }
-
-// ContactForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   stateName: PropTypes.string,
-// }
 
 export default ContactForm;

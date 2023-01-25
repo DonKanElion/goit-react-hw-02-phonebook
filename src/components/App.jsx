@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 
 // import ContactForm from './ContactForm';
-import { ContactForm } from "components/ContactForm/ContactForm";
+import { ContactForm } from 'components/ContactForm/ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
-
-// const INITIAL_STATE = {
-//   name: '',
-//   number: '',
-// };
 
 export class App extends Component {
   state = {
@@ -22,7 +17,16 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = ({ name, number }) => {
+  addContact = (name, number) => {
+    const { contacts } = this.state;
+
+    const checkContact = contacts.some(
+      contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+    );
+
+    if (checkContact) {
+      return alert('This contact is in the list');
+    }
     const newContact = {
       id: 'id-' + nanoid(2),
       name,
@@ -50,10 +54,7 @@ export class App extends Component {
     });
   };
 
-
   render() {
-    // const { contacts } = this.state;
-
     return (
       <div
         style={{
@@ -68,8 +69,7 @@ export class App extends Component {
 
         <h1 className="hero_title">Phonebook</h1>
 
-        <ContactForm addContact={this.addContact}
-        ></ContactForm>
+        <ContactForm addContact={this.addContact}></ContactForm>
 
         {/* <h2 className='title'>Contacts</h2> */}
 
@@ -81,7 +81,6 @@ export class App extends Component {
         <ContactList contacts={this.findContact()}>
           {/* stateName={this.state.name} */}
         </ContactList>
-        
       </div>
     );
   }
