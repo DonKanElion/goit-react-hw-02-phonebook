@@ -26,8 +26,8 @@ export class ContactForm extends Component {
 
     const { addContact } = this.props;
     const { name, number } = this.state;
-    addContact(name, number);
 
+    addContact(name, number);
     this.reset();
   };
 

@@ -31,38 +31,30 @@ export class App extends Component {
       contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
     );
 
-    if (!checkContact) {
-      const newContact = {
+     const newContact = {
         id: 'id-' + nanoid(2),
         name,
         number,
       };
 
-      return this.setState(prevState => ({
+    if (!checkContact) {
+     return  this.setState(prevState => ({
         contacts: [newContact, ...prevState.contacts],
       }));
     }
 
-    alert(`${name} is already in contact`);
+   alert(`${name} is already in contact`);
 
     //  if(name === '' || "" || undefined){
     //   return  alert(`Fill in the field`);
     //  }
   };
 
-  handleClick = evt => {
-    const { id } = evt.target;
-
+  handleClick = (id) => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
-
-  // deleteContact = id => {
-  //   // this.setState(prevState => ({
-  //   //   contacts: []
-  //   // }))
-  // };
 
   findContact = () => {
     const { contacts, filter } = this.state;

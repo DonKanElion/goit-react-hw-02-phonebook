@@ -4,18 +4,15 @@ import s from './ContactList.module.css';
 
 const ContactListItem = ({ id, name, number, onClick }) => {
   return (
-    <>
       <li className={s.item}>
-        <p className={s.item_text}>
-        👉 {name}: {number} 
-        </p>
-         
-        <button className={s.btn_del} name="del" id={id} type="button" onClick={onClick}>
-        Delete
-      </button>
-      </li>
-     
-    </>
+          <p className={s.item_text}>
+          👉 {name}: {number} 
+          </p>
+          
+          <button className={s.btn_del} name="del" id={id} type="button" onClick={(evt) =>  onClick(evt.target.id)}>
+          Delete
+        </button>
+    </li>
   );
 };
 
