@@ -7,6 +7,7 @@ import s from './ContactForm.module.css';
 export class ContactForm extends Component {
   static propTypes = {
     addContact: PropTypes.func.isRequired,
+    contacts: PropTypes.array.isRequired,
   };
 
   state = {
@@ -23,17 +24,35 @@ export class ContactForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-
-    const { addContact } = this.props;
+    const { addContact, contacts } = this.props;
     const { name, number } = this.state;
 
-    addContact(name, number);
-    this.reset();
+    if (name === '' || '' || undefined) {
+      return alert(`Fill in the field`);
+    }
+
+    const checkContact = contacts.some(
+      contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+    );
+
+    if (!checkContact) {
+      addContact(name, number);
+      return this.resetAll();
+    }
+
+    alert(`${name} is already in contact`);
+    this.resetNum();
   };
 
-  reset = () => {
+  resetAll = () => {
     this.setState({
       name: '',
+      number: '',
+    });
+  };
+
+  resetNum = () => {
+    this.setState({
       number: '',
     });
   };

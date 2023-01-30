@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 
-// import ContactForm from './ContactForm';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
@@ -25,32 +24,18 @@ export class App extends Component {
   };
 
   addContact = (name, number) => {
-    const { contacts } = this.state;
+    const newContact = {
+      id: 'id-' + nanoid(2),
+      name,
+      number,
+    };
 
-    const checkContact = contacts.some(
-      contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
-    );
-
-     const newContact = {
-        id: 'id-' + nanoid(2),
-        name,
-        number,
-      };
-
-    if (!checkContact) {
-     return  this.setState(prevState => ({
-        contacts: [newContact, ...prevState.contacts],
-      }));
-    }
-
-   alert(`${name} is already in contact`);
-
-    //  if(name === '' || "" || undefined){
-    //   return  alert(`Fill in the field`);
-    //  }
+    return this.setState(prevState => ({
+      contacts: [newContact, ...prevState.contacts],
+    }));
   };
 
-  handleClick = (id) => {
+  handleClick = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
@@ -66,7 +51,7 @@ export class App extends Component {
   };
 
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
 
     return (
       <div
@@ -78,20 +63,18 @@ export class App extends Component {
         }}
         className="section"
       >
-        <h2>React 🛠 homework template 🙀</h2>
-
         <h1 className="hero_title">Phonebook</h1>
 
-        <ContactForm addContact={this.addContact}></ContactForm>
+        <ContactForm
+          addContact={this.addContact}
+          contacts={contacts}
+        ></ContactForm>
 
         {/* <h2 className='title'>Contacts</h2> */}
 
         {contacts.length !== 0 ? (
           <>
-            <Filter
-              stateName={this.state.filter}
-              onChange={this.handleChange}
-            ></Filter>
+            <Filter stateName={filter} onChange={this.handleChange}></Filter>
             <ContactList
               contacts={this.findContact()}
               onClick={this.handleClick}
