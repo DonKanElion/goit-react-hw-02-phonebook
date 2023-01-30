@@ -9,7 +9,7 @@ const ContactListItem = ({ id, name, number, onClick }) => {
           👉 {name}: {number} 
           </p>
           
-          <button className={s.btn_del} name="del" id={id} type="button" onClick={(evt) =>  onClick(evt.target.id)}>
+          <button className={s.btn_del} name="del" type="button" onClick={() => onClick(id)}>
           Delete
         </button>
     </li>

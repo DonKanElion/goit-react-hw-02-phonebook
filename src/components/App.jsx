@@ -35,7 +35,7 @@ export class App extends Component {
     }));
   };
 
-  handleClick = id => {
+  handleClick = (id) => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
